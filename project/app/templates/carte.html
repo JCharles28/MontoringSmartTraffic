@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Icon Link -->
+    <link
+      rel="shortcut icon"
+      href="{% static '/ressources/icon/icon-track.png' %}"
+      type="image/x-icon"
+    />
+
+    <!-- CSS Links -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7wziz64ijctg5v3BBaFId5F0bhBkeV1R/RlXbF1L8gaNFEbE7IZuZoo5M2Jsiw"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="{% static 'css/design.css' %}" />
+
+    <!-- Leaflet Links -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <!-- JavaScript -->
+    <script src="{% static '/javascript/map.js' %}"></script>
+
+    <title>Smart Traffic - Home</title>
+  </head>
+  <body class="bg-light d-flex justify-content-center align-items-center">
+<nav id="nav" class="navbar fixed-top navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <img src="{% static '/ressources/icon/icon-track.png' %}" width="20" alt="" class="d-inline-block align-text-top me-2"/>
+    <a href="/home/" class="navbar-brand">Smart Traffic</a>
+
+    <div class="d-lg-flex justify-content-center align-items-center flex-grow-1">
+      <ul class="navbar-nav flex-grow-1 flex-row align-items-center justify-content-around">
+        <li class="nav-item">
+          <a href="/home/" class="nav-link">Traffic</a>
+        </li>
+        <li class="nav-item">
+          <a href="/carte/" class="nav-link">Carte</a>
+        </li>
+        <!-- D'autres liens de navigation peuvent être ajoutés ici -->
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <main class="container mt-5 pt-4 pb-4 mx-auto my-auto">
+      <div class="row">
+        <div class="col">
+          <div id="map"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="fixed-bottom bg-dark text-white text-center py-2">
+      <p class="m-0">&copy; 2024 <span>Smart</span> <span>Traffic</span></p>
+    </footer>
+  </body>
+</html>
