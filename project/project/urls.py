@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.index),
     path('carte/', views.carte),
+    path('test/', views.test),
+    # path('chart/', views.ChartView.as_view(), name='chart')
 ]

@@ -40,24 +40,49 @@
 
     <script src="{% static 'javascript/map.js' %}"></script>
 
-    <title>Smart Traffic - Home</title>
+    <title>Test</title>
   </head>
   <body class="bg-light">
     {% include 'app/header.html' %}
 
+    {% block content %}       
     <main
       class="main-content mt-5 pt-5 mb-5 pb-5 container d-flex align-items-center justify-content-center"
     >
       <div class="row w-100 mt-4">
         <h3 class="display-7 text-center mb-3">
-          Carte de l'emplacement du système
+          Test
         </h3>
         <div class="col w-80">
-          <div id="map"></div>
+            <p class="text-center text-dark">
+                
+                <ul class="list-group-item">                    
+                    <li>nb de véhicules: {{test1|length}}</li>
+                    <li>nb de détection: {{test2|length}}</li>
+                <!-- {% for elem in test1 %}
+                    {% if elem %}
+                        <li class="list-group">{{e.nomVehicule}}</li>
+                    {% else %}
+                        <p>None</p>
+                    {% endif %}
+                {% endfor %}
+
+                {% for e in test2 %}
+                    {% if e %}
+                        <li class="list-group">{{elem.idDetection}}</li>
+                    {% else %}
+                        <p>None</p>
+                    {% endif %}
+                {% endfor %} -->
+            </ul>
+
+
+            </p>
         </div>
       </div>
     </main>
-
+    {% endblock %}
+    s
     {% include 'app/footer.html' %}
 
 
