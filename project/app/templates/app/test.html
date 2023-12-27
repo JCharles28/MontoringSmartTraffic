@@ -57,23 +57,23 @@
             <p class="text-center text-dark">
                 
                 <ul class="list-group-item">                    
-                    <li>nb de véhicules: {{test1|length}}</li>
-                    <li>nb de détection: {{test2|length}}</li>
-                <!-- {% for elem in test1 %}
-                    {% if elem %}
-                        <li class="list-group">{{e.nomVehicule}}</li>
-                    {% else %}
-                        <p>None</p>
-                    {% endif %}
-                {% endfor %}
-
-                {% for e in test2 %}
-                    {% if e %}
-                        <li class="list-group">{{elem.idDetection}}</li>
-                    {% else %}
-                        <p>None</p>
-                    {% endif %}
-                {% endfor %} -->
+                    <!-- <li>nb de véhicules: {{test1|length}}</li>
+                    <li>nb de détection: {{test2|length}}</li> -->
+                    {% for elem in test1 %}
+                        {% if elem %}
+                            <li class="list-group">{{elem.nomVehicule}}</li>
+                        {% else %}
+                            <p>None</p>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% for e in test2 %}
+                        {% if e %}
+                            <li class="list-group">{{e.idDetection}}</li>
+                        {% else %}
+                            <p>None</p>
+                        {% endif %}
+                    {% endfor %}
             </ul>
 
 

@@ -15,7 +15,7 @@ class TypeVehicule(models.Model):
     vehicule = models.ForeignKey(Vehicule, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.typeVehicule
+        return self.nomTypeVehicule
 
 
 class Feu(models.Model):
@@ -32,7 +32,7 @@ class etatFeu(models.Model):
     feu = models.ForeignKey(Feu, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.etatFeu
+        return f"{self.idEtatFeu} - {self.nomEtatFeu}"
 
 
 class Rue(models.Model):
@@ -62,5 +62,5 @@ class Detection(models.Model):
     rue = models.ForeignKey(Rue, on_delete=models.CASCADE)
     feu = models.ForeignKey(Feu, on_delete=models.CASCADE)
     
-    def __str__(self):
-        return f"{self.temps.dateHeure} - {self.vehicule.typeVehicule} - {self.rue.nomRue} - {self.feu.etatFeu}"
+def __str__(self):
+    return f"{self.idDetection} - {self.temps} - {self.vehicule} - {self.rue} - {self.feu}"

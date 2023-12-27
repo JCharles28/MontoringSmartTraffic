@@ -9,3 +9,14 @@ admin.site.register(etatFeu)
 admin.site.register(Rue)
 admin.site.register(Temps)
 admin.site.register(Detection)
+
+# Logins admin :
+
+# admin
+# admin
+
+# w.atik
+# walidatik2024
+
+# n.chilouet
+# najlaechilouet2024
