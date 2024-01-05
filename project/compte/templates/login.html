@@ -29,11 +29,15 @@
         <div class="row justify-content-center">
           <div class="col-md-6">
             <div class="card shadow-sm border-0">
-              <div class="card-header bg-light">
+              <div class="card-header bg-light rounded">
                 <h3 class="text-center text-primary">Login</h3>
               </div>
               <div class="card-body">
-                <form>
+                <form action="/connexion/" method="POST">
+                  {% csrf_token %}
+                  {% if error_message %}
+                    <p class="text-danger">{{ error_message }}</p>
+                  {% endif %}
                   <div class="mb-3">
                     <label for="username" class="form-label">Nom d'utilisateur</label>
                     <div class="input-group">

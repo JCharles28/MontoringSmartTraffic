@@ -1,66 +1,40 @@
 from django.db import models
 
-
-class Vehicule(models.Model):
-    idVehicule = models.AutoField(primary_key = True, verbose_name = "id du véhicule")
-    nomVehicule = models.CharField(max_length = 50, verbose_name = "nom de véhicule")
-
-    def __str__(self):
-        return f"{self.idVehicule} + {self.nomVehicule}"
-
-
-class TypeVehicule(models.Model):
-    idTypeVehicule = models.AutoField(primary_key = True, verbose_name = "id du type de véhicule")
-    nomTypeVehicule = models.CharField(max_length = 50, verbose_name = "nom du type de véhicule")
-    vehicule = models.ForeignKey(Vehicule, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.nomTypeVehicule
-
-
-class Feu(models.Model):
-    idFeu = models.AutoField(primary_key = True, verbose_name = "id du feu")
-    nomFeu = models.CharField(max_length = 50, verbose_name = "nom du feu")
-
-    def __str__(self):
-        return self.nomFeu
-
-  
-class etatFeu(models.Model):
-    idEtatFeu = models.AutoField(primary_key = True, verbose_name = "id de l'état du feu")
-    nomEtatFeu = models.CharField(max_length = 50, verbose_name = "état du feu")
-    feu = models.ForeignKey(Feu, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.idEtatFeu} - {self.nomEtatFeu}"
-
+class Temps(models.Model):
+    idTemps = models.AutoField(primary_key=True)
+    dateHeure = models.DateTimeField()
+    semaine = models.IntegerField()
+    jourSemaine = models.CharField(max_length=50)
+    isWeekEnd = models.BooleanField()
 
 class Rue(models.Model):
-    idRue = models.AutoField(primary_key = True, verbose_name = "id de la rue")
-    nomRue = models.CharField(max_length=50,  verbose_name = "nom de la rue")
-    feu = models.ForeignKey(Feu, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.nomRue
-
-
-class Temps(models.Model):
-    idTemps = models.AutoField(primary_key = True, verbose_name = "id du temps")
-    dateHeure = models.DateTimeField(verbose_name = "date de la détection")
-    semaine = models.IntegerField( verbose_name = "semaine de la détection")
-    jourSemaine = models.CharField(max_length=50, verbose_name = "jour de la détection")
-    isWeekEnd = models.BooleanField(verbose_name = "indicateur de week-end")
-
-    def __str__(self):
-        return self.dateHeure
-
+    idRue = models.AutoField(primary_key=True)
+    nomRue = models.CharField(max_length=50)
 
 class Detection(models.Model):
-    idDetection = models.AutoField(primary_key = True, verbose_name = "id de la détection")
+    idDetection = models.AutoField(primary_key=True)
+    rue = models.ForeignKey(Rue, on_delete=models.SET_NULL, null=True)
     temps = models.ForeignKey(Temps, on_delete=models.CASCADE)
+
+class TypeVehicule(models.Model):
+    idTypeVehicule = models.AutoField(primary_key=True)
+    nomTypeVehicule = models.CharField(max_length=50)
+
+class Vehicule(models.Model):
+    idVehicule = models.AutoField(primary_key=True)
+    nomVehicule = models.CharField(max_length=50)
+    typeVehicule = models.ForeignKey(TypeVehicule, on_delete=models.CASCADE, related_name='vehicules')
+
+class EtatFeu(models.Model):
+    idEtatFeu = models.AutoField(primary_key=True)
+    nomEtatFeu = models.CharField(max_length=50)
+
+class Feu(models.Model):
+    idFeu = models.AutoField(primary_key=True)
+    nomFeu = models.CharField(max_length=50)
+    rue = models.ForeignKey(Rue, on_delete=models.CASCADE, related_name='feux')
+    etatFeu = models.ForeignKey(EtatFeu, on_delete=models.CASCADE)
+
+class DetectionVehicule(models.Model):
+    detection = models.ForeignKey(Detection, on_delete=models.CASCADE)
     vehicule = models.ForeignKey(Vehicule, on_delete=models.CASCADE)
-    rue = models.ForeignKey(Rue, on_delete=models.CASCADE)
-    feu = models.ForeignKey(Feu, on_delete=models.CASCADE)
-    
-def __str__(self):
-    return f"{self.idDetection} - {self.temps} - {self.vehicule} - {self.rue} - {self.feu}"

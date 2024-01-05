@@ -1,35 +1,35 @@
 {% load static %}
 <header>
-    <nav id="nav" class="navbar fixed-top navbar-expand-lg navbar-dark">
-      <div class="container-fluid">
-        <img
-          src="{% static '/ressources/icon/icon-track.png' %}"
-          width="20"
-          alt=""
-          class="d-inline-block align-text-top me-2"
-        />
-        <a href="/home/" class="navbar-brand">Smart Traffic</a>
+  <nav id="nav" class="navbar fixed-top navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <img src="{% static '/ressources/icon/icon-track.png' %}" width="20" alt=""
+        class="d-inline-block align-text-top me-2" />
+      <a href="/home/" class="navbar-brand">Smart Traffic</a>
 
-        <div
-          class="d-lg-flex justify-content-center align-items-center flex-grow-1"
-        >
-          <ul
-            class="navbar-nav flex-grow-1 flex-row align-items-center justify-content-around"
-          >
-            <li class="nav-item">
-              <a href="/home/" class="nav-link">
-                <button class="btn btn-outline-light px-4 py-2">
-                  Traffic
-                </button>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/carte/" class="nav-link">
-                <button class="btn btn-outline-light px-4 py-2">Carte</button>
-              </a>
-            </li>
-          </ul>
-        </div>
+      <div class="d-lg-flex justify-content-center align-items-center flex-grow-1">
+        <ul class="navbar-nav flex-grow-1 flex-row align-items-center justify-content-around">
+          <li class="nav-item">
+            <a href="/home/" class="nav-link">
+              Traffic
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/carte/" class="nav-link">
+              Carte
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/" class="nav-link">
+              Informations
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/logout/" class="nav-link text-danger">
+              Déconnexion
+            </a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>

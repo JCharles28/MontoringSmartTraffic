@@ -1,6 +1,6 @@
 --- Lister toutes les tables de la base en question
 
-SELECT name FROM sqlite_master WHERE type='table';
+--- SELECT name FROM sqlite_master WHERE type='table';
 
 
 --- Désactiver temporairement les contraintes des clés étrangères

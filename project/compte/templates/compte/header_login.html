@@ -1,35 +1,25 @@
 {% load static %}
 <header>
-  <nav id="nav" class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+  <nav id="nav" class="navbar fixed-top navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <img
-        src="{% static '/ressources/icon/icon-track.png' %}"
-        width="30"
-        alt=""
-        class="d-inline-block align-text-top me-2"
-      />
-      <a href="/home/" class="navbar-brand">Smart Traffic</a>
+      <img src="{% static '/ressources/icon/icon-track.png' %}" width="20" alt=""
+        class="d-inline-block align-text-top me-2" />
+      <a href="#" class="navbar-brand">Smart Traffic</a>
 
-      <div
-        class="collapse navbar-collapse justify-content-end"
-        id="navbarNavAltMarkup"
-      >
-      <div class="navbar-nav">
-        <a href="/home/" class="nav-item nav-link active">Accueil</a>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Plus
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Sous-menu 1</a></li>
-            <li><a class="dropdown-item" href="#">Sous-menu 2</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Autre lien</a></li>
-          </ul>
-        </li>
-        <a href="/carte/" class="nav-item nav-link">Carte</a>
-      </div>
-      
+      <div class="d-lg-flex justify-content-center align-items-center flex-grow-1">
+        <ul class="navbar-nav flex-grow-1 flex-row align-items-center justify-content-around">
+
+          <li class="nav-item">
+            <a href="/" class="nav-link">
+              Informations
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/login/" class="nav-link text-primary">
+              Connexion
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>

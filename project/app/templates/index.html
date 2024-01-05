@@ -1,119 +1,150 @@
+{% include 'app/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="{% static 'css/design.css' %}" />
-    <link
-      rel="shortcut icon"
-      href="{% static '/ressources/icon/icon-track.png' %}"
-      type="image/x-icon"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="text/javascript">
-      window.onload = function () {
-        let test_rue = JSON.parse("{{ test_rue|safe }}");
-        let test_nb = JSON.parse("{{ test_nb|safe }}");
-        let rue = JSON.parse("{{ rue|safe }}");
-        let count = JSON.parse("{{ count|safe }}");
 
-        alert(test_rue);
-        alert(test_nb);
+{% block javascript %}
+  <script type="text/javascript">
+    window.onload = function () {
 
-        let ctx1 = document.getElementById("canvas1").getContext("2d");
-        new Chart(ctx1, {
-          type: "line",
-          data: {
-            labels: test_rue,
-            datasets: [
-              {
-                label: "Nombre de véhicules par rue",
-                backgroundColor: "rgb(255, 99, 132)",
-                borderColor: "#000",
-                borderWidth: 1,
-                data: test_nb,
-              },
-            ],
+      // ----- data -----
+      let rues = JSON.parse("{{ rue|escapejs|safe }}");
+      let rues_nb_detections = JSON.parse("{{ nbDetection|escapejs|safe }}");
+
+      let types = JSON.parse("{{ typeVehicule|escapejs|safe }}");
+      let types_nb_detections = JSON.parse("{{ nbDetection2|escapejs|safe }}");
+
+      // ----- backgrounds colors -----
+      function getRandomColor() {
+        var r = Math.floor(Math.random() * 255);
+        var g = Math.floor(Math.random() * 255);
+        var b = Math.floor(Math.random() * 255);
+        return 'rgba(' + r + ', ' + g + ', ' + b + ', 0.2)';
+      }
+
+      let bC1 = rues_nb_detections.map(() => getRandomColor());
+      let bC2 = types_nb_detections.map(() => getRandomColor());
+
+      // ----- charts -----
+      let ctx1 = document.getElementById("canvas1").getContext("2d");
+      new Chart(ctx1, {
+        type: "bar",
+        data: {
+          labels: rues,
+          datasets: [
+            {
+              label: "Nombre de véhicules par rue",
+              backgroundColor: bC1,
+              borderColor: "#000",
+              borderWidth: .75,
+              data: rues_nb_detections,
+
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          title: {
+            display: true,
+            text: "Nombre de véhicules détectés par heure",
           },
-          options: {
-            responsive: true,
-            title: {
-              display: true,
-              text: "Nombre de véhicules par rue",
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: Math.max(...rues_nb_detections) * 2,
             },
           },
-        });
+        },
+      });
 
-        let canvas2 = document.getElementById("canvas2");
-        let ctx2 = canvas2.getContext("2d");
-        new Chart(ctx2, {
-          type: "doughnut",
-          data: {
-            labels: test_rue,
-            datasets: [
-              {
-                label: "Véhicules",
-                data: test_nb,
-                backgroundColor: "rgba(255, 99, 132, 0.2)",
-                borderColor: "rgba(255, 99, 132, 1)",
-                borderWidth: 1,
-              },
-            ],
+      let canvas2 = document.getElementById("canvas2");
+      let ctx2 = canvas2.getContext("2d");
+      new Chart(ctx2, {
+        type: "doughnut",
+        data: {
+          labels: types,
+          datasets: [
+            {
+              label: "Nombre de véhicules par type",
+              data: types_nb_detections,
+              backgroundColor: bC2,
+              borderColor: "#000",
+              borderWidth: .75,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          title: {
+            display: true,
+            text: "Nombre de véhicules détectés par heure",
           },
-        });
-      };
-    </script>
-    <title>Smart Traffic - Home</title>
-  </head>
-  <body class="bg-light">
-    {% if user.is_authenticated %}
-    {% include 'app/header.html' %}
-    {% else %}
-    {% include 'compte/header_login.html' %}
-    {% endif %}
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: Math.max(...types_nb_detections) * 2,
+            },
+          },
+        },
+      });
 
-    <div class="py-3 px-2 container-fluid">
-      <div class="p-3 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-2 mb-2">
-        <div class="p-5 d-flex align-items-center justify-content-center">
-          <div class="card">
-            {% if user.is_authenticated %}
-            <div class="card-body">
-              <canvas id="canvas1" width="300" height="300"></canvas>
-            </div>
-            {% else %}
-            <div class="card-body">
-              <canvas id="" width="300" height="300"></canvas>
-            </div>
-            {% endif %}
-            <!-- <div class="card-body">
-              <canvas id="canvas1" width="300" height="300"></canvas>
-            </div> -->
+      let canvas3 = document.getElementById("canvas3");
+      let ctx3 = canvas3.getContext("2d");
+      new Chart(ctx3, {
+        type: "line",
+        data: {
+          labels: types,
+          datasets: [
+            {
+              label: "Nombre de véhicules par type",
+              data: types_nb_detections,
+              backgroundColor: bC2,
+              borderColor: "#000",
+              borderWidth: .75,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          title: {
+            display: true,
+            text: "Nombre de véhicules détectés par heure",
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: Math.max(...types_nb_detections) * 3,
+            },
+          },
+        },
+      });
+
+    };
+  </script>
+{% endblock %}
+
+{% block content %}
+  <div class="py-3 px-2 container-fluid">
+    <div class="p-3 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-1 mt-5 mb-3">
+      <div class="p-5 d-flex align-items-center justify-content-center">
+        <div class="card">
+          <div class="card-body">
+            <canvas id="canvas1" width="300" height="300"></canvas>
           </div>
         </div>
-        <div class="p-5 d-flex align-items-center justify-content-center">
-          <div class="card">
-            <div class="card-body">
-              <canvas id="canvas2" width="300" height="300"></canvas>
-            </div>
+      </div>
+      <div class="p-5 d-flex align-items-center justify-content-center">
+        <div class="card">
+          <div class="card-body">
+            <canvas id="canvas2" width="300" height="300"></canvas>
           </div>
         </div>
-        <div class="p-5 d-flex align-items-center justify-content-center">
-          <div class="card">
-            <div class="card-body">
-              <canvas id="" width="300" height="300"></canvas>
-            </div>
+      </div>
+      <div class="p-5 d-flex align-items-center justify-content-center">
+        <div class="card">
+          <div class="card-body">
+            <canvas id="canvas3" width="300" height="300"></canvas>
           </div>
         </div>
       </div>
     </div>
-
-    {% include 'app/footer.html' %}
-
-
-  </body>
-</html>
+  </div>
+{% endblock %}

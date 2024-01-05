@@ -30,6 +30,15 @@ footer {
   );
 }
 
+.zoom-p {
+
+}
+
+.zoom-p:hover {
+  transform: scale(1.25) !important;
+  transition: ease 0.5s !important;
+}
+
 @keyframes gradientBG {
   0% {
     background-position: 0% 50%;
@@ -41,3 +50,5 @@ footer {
     background-position: 0% 50%;
   }
 }
+
+

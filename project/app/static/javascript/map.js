@@ -1,28 +1,41 @@
 window.onload = function () {
-  alert("Hello from map.js");
+  alert("Bienvenue sur la carte de l'intersection testé par le prototype Smart Traffic.");
   // Create a map using Leaflet
-  var map = L.map("map").setView([48.71536, 2.298221], 500);
+  var map = L.map("map").setView([48.71536, 2.298221], 700);
+
 
   // Add a tile layer to the map (OpenStreetMap)
   L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
     attribution: "©",
+    maxZoom: 18.499999,
   }).addTo(map);
 
-  // Add a marker to the map
-  L.marker([51.5, -0.09]).addTo(map);
 
+  // Markers (feux)
+  var marker1 = L.marker([48.715701, 2.298238]).addTo(map);
+  var marker2 = L.marker([48.715294, 2.298024]).addTo(map);
+  var marker3 = L.marker([48.714974, 2.298427]).addTo(map);
+  var marker4 = L.marker([48.715270, 2.298771]).addTo(map);
 
-  L.circle([48.71536, 2.298221], 50, {
-    color: "black", // the color of the circle outline
-    fillColor: "#1a5276", // the color of the circle fill
-    fillOpacity: 0.25, // the opacity of the circle fill
-    stroke: true, // whether to draw the circle outline
-    weight: 1.25, // the width of the circle outline in pixels
-    opacity: 1, // the opacity of the circle outline
-    lineCap: "round", // the shape to be used at the end of the circle outline, 'butt', 'round' or 'square'
-    lineJoin: "round", // the shape to be used at the corners of the circle outline, 'miter', 'round' or 'bevel'
-    dashArray: null, // the dash pattern for the circle outline, e.g. '10, 10' for a dashed line
-    dashOffset: null, // the distance into the dash pattern to start the dash
+  marker1.bindPopup("<b>Feu n°1</b>").openPopup();
+  marker2.bindPopup("<b>Feu n°2</b>").openPopup();
+  marker3.bindPopup("<b>Feu n°3</b>").openPopup();
+  marker4.bindPopup("<b>Feu n°4</b>").openPopup();
+  
+
+  L.circle([48.715295, 2.298321], 45, {
+    color: "#4287f5", 
+    fillColor: "#37edef",
+    fillOpacity: 0.2, 
+    stroke: true, 
+    weight: 1.5, 
+    opacity: 0.8, 
+    lineCap: "round", 
+    lineJoin: "bevel", 
+    dashArray: "5, 5", 
+    dashOffset: "0" 
   }).addTo(map);
+
+
 };
 
