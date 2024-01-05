@@ -30,13 +30,14 @@ footer {
   );
 }
 
-.zoom-p {
-
+#cop26 {
+  background-color: #1a5276 !important;
+  transition: ease-in-out 0.5s  !important;
 }
 
-.zoom-p:hover {
-  transform: scale(1.25) !important;
-  transition: ease 0.5s !important;
+#cop26:hover {
+  background-color: #003366 !important;
+  transition: ease-in-out 0.5s  !important;
 }
 
 @keyframes gradientBG {

@@ -36,7 +36,7 @@ Smart Traffic
             second.innerHTML = s < 10 ? '0' + s : s;
         }
 
-        setInterval(updateCountdowntime, 1000);
+        setInterval(updateCountdowntime, 500);
 
     }
 </script>
@@ -65,9 +65,20 @@ Smart Traffic
                                     contribuant à une mobilité urbaine plus durable et responsable 🚴‍♂️🚎</p>
                             </div>
                         </div>
-                        <div class="p-2 d-flex align-items-center justify-content-center">
-                            <div class="p-4 d-flex gap-3 align-items-center justify-content-center card w-50">
-                                <h2 class="text-center">Objectif COP26</h2>
+                        <hr>
+                        <div class="p-3">
+                            <div class="p-3">
+                                <h2 class="text-center">Présentation vidéo</h2>
+                                <div class="embed-responsive embed-responsive-16by9 p-3">
+                                    <iframe class="w-100 h-100 embed-responsive-item"
+                                        src="https://www.youtube.com/embed/82OPcDVec_8" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="p-3 d-flex flex-column align-items-center justify-content-center">
+                            <h2 class="text-center mb-4">Objectif COP26</h2>
+                            <div id="cop26" class="p-4 gap-4 d-flex justify-content-center w-50">
                                 <div>
                                     <h4 class="zoom-p" id="annee">00</h4>
                                     <small>Années</small>
@@ -91,15 +102,6 @@ Smart Traffic
                                 <div>
                                     <h4 class="zoom-p" id="seconde">00</h4>
                                     <small>Secondes</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-3">
-                            <div class="p-3">
-                                <h2 class="text-center">Présentation vidéo</h2>
-                                <div class="embed-responsive embed-responsive-16by9 p-3">
-                                    <iframe class="w-100 h-100 embed-responsive-item"
-                                        src="https://www.youtube.com/embed/82OPcDVec_8" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
